@@ -1,0 +1,38 @@
+version: "3.3"
+  
+services:
+  e-db:
+    image : mongo
+    container_name: e-db
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./db:/data/db
+    ports:
+      - 27017:27017
+    restart: unless-stopped
+
+  e-api:
+    build:
+      context: ../api
+      dockerfile: ../docker/api/Dockerfile
+    container_name: e-api
+    environment:
+      - PORT=8000
+    volumes:
+      - ../api:/app
+    ports:
+      - 8000:8000
+    depends_on:
+      - e-db
+
+  e-proxy:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: e-proxy
+    ports:
+      - 80:80
+    depends_on:
+      - e-api
