@@ -9,7 +9,6 @@ import time
 import jwt
 import dotenv
 import base64
-from decouple import config
 from typing import Dict
 from pydantic import EmailStr
 from cryptography.fernet import Fernet
