@@ -8,6 +8,7 @@ COPY requirements.txt .
 COPY setup.py .
 
 RUN pip install -r requirements.txt \
-    && pip install -e ./
+    && pip install -e ./ \
+    && touch key.txt
 
 CMD ["python", "main.py"]
