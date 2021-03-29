@@ -27,6 +27,18 @@ services:
     depends_on:
       - e-db
 
+  e-web:
+    build:
+      context: ../web
+      dockerfile: ../docker/web/Dockerfile
+    container_name: e-web
+    volumes:
+      - ../web:/usr/src/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - e-api
+
   e-proxy:
     build:
       context: ./nginx
