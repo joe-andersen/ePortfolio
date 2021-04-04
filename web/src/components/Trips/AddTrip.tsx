@@ -1,22 +1,42 @@
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { setAddTripVisible } from '../../stores/General/GeneralActions';
+import { addTrip } from '../../stores/Trips/TripActions';
 
 const style = {
     rowMargin: {
         margin: '5px',
     },
-    buttoMargin: {
+    buttonMargin: {
         marginLeft: '15px',
     },
 };
 
 export const AddTrip: FC<Record<string, never>> = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const onCancelClick = (event) => {
         event.preventDefault();
         dispatch(setAddTripVisible());
+    }
+
+    const onSave = (event) => {
+        event.preventDefault();
+        const trip = {
+            code: event.target.code.value,
+            name: event.target.name.value,
+            length: event.target.length.value,
+            start: event.target.start.value,
+            resort: event.target.resort.value,
+            perPerson: event.target.perPerson.value,
+            image: event.target.image.value,
+            description: event.target.description.value,
+        }
+
+        dispatch(addTrip(trip));
+        history.push('/');
     }
     return (
         <>
@@ -26,7 +46,7 @@ export const AddTrip: FC<Record<string, never>> = () => {
                 </div>
             </div>
             <div className="col-md-3">
-                <form>
+                <form onSubmit={onSave}>
                     <div className="form-group">
                         <label>Code:</label>
                         <input type="text" id="code" placeholder="Code" className="form-control"></input>
@@ -61,8 +81,9 @@ export const AddTrip: FC<Record<string, never>> = () => {
                     </div>
                     <button type="submit" className="btn btn-info">Save</button>
                     <button
+                        type="button"
                         className="btn btn-outline-secondary"
-                        style={style.buttoMargin}
+                        style={style.buttonMargin}
                         onClick={(event) => onCancelClick(event)}
                     >
                         Cancel
