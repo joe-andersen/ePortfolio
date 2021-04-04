@@ -1,4 +1,5 @@
 import {
+    CLEAR_TOKEN,
     LOGIN_USER,
     LOGIN_USER_SUCCESS,
     LOGIN_USER_ERROR,
@@ -33,6 +34,11 @@ export const UserReducer = (state = initialState, action: UserActions) => {
                 ...state,
                 error: action.payload.error,
                 fetching: false,
+            }
+        case CLEAR_TOKEN:
+            return {
+                ...state,
+                token: null,
             }
         // case REGISTER_USER_SUCCESS:
         //     return {

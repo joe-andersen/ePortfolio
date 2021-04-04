@@ -1,4 +1,5 @@
 import {
+    CLEAR_TOKEN,
     LOGIN_USER,
     LOGIN_USER_ERROR,
     LOGIN_USER_SUCCESS,
@@ -48,7 +49,12 @@ export interface LoginError {
     payload: ErrorPayload;
 }
 
+export interface ClearToken {
+    type: typeof CLEAR_TOKEN;
+}
+
 export type UserActions =
+    | ClearToken
     | LoginRequest
     | LoginSuccess
     | LoginError;
