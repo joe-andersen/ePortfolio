@@ -21,6 +21,7 @@ const config = {
             ignored: /node_modules/,
         },
         disableHostCheck: true,
+        historyApiFallback: true,
     },
 };
 

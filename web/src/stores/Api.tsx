@@ -1,4 +1,4 @@
-const apiUrl = 'http://0.0.0.0:8000/';
+const apiUrl = 'http://localhost:8000/';
 
 export const registerUser = (payload) => {
     const params = {
@@ -22,9 +22,9 @@ export const loginUser = (payload) => {
     const params = {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(payload.user)
+        body: JSON.stringify(payload.user),
     };
 
     return fetch(`${apiUrl}user/login`, params)
@@ -33,5 +33,8 @@ export const loginUser = (payload) => {
         })
         .then(json => {
             return json;
+        })
+        .catch((error) => {
+            console.log(error);
         });
 };

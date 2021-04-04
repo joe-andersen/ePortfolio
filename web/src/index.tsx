@@ -3,9 +3,7 @@ import { render } from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import App from './App';
 import { Provider } from 'react-redux';
-import { configureStore } from './stores/ConfigureStore';
-
-const store = configureStore();
+import store from './stores/ConfigureStore';
 
 render(
     <Provider store={store}>
