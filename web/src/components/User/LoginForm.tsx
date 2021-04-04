@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUserAction } from '../../stores/User/UserActions';
 import { getUserTokenSelector } from '../../stores/User/UserSelector';
 import { Redirect } from 'react-router-dom';
-import { Title } from '../Title';
 import { setCookie, checkCookie } from '../../utils/UseCookie';
 
 export const LoginForm: FC<Record<string, never>> = () => {
@@ -59,7 +58,7 @@ export const LoginForm: FC<Record<string, never>> = () => {
                         </div>
                     </div>
                     <div className="mb-3">
-                        <button type="submit" className="btn btn-primary">Sign in</button>
+                        <button type="submit" className="btn btn-info">Sign in</button>
                     </div>
                 </form>
             </div>

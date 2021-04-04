@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { Title } from './components/Title';
 import { LoginForm, RegisterForm } from './components/User';
 import { Navigation } from './components/Nav';
-import { TripListing, PrivateTripListing } from './components/Trips';
+import { TripContainer } from './components/Trips';
+import { PrivateRoute } from './components/Utilities/PrivateRoute';
 import {
     BrowserRouter,
     Route,
@@ -18,7 +18,7 @@ const App: FC = () => {
                     <Route path='/' exact={true} component={LoginForm} />
                     <Route path='/login' component={LoginForm} />
                     <Route path='/register' component={RegisterForm} />
-                    <PrivateTripListing path='/trips' component={TripListing} />
+                    <PrivateRoute path='/trips' component={TripContainer} />
                 </Switch>
             </div>
         </BrowserRouter>
