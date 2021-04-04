@@ -7,14 +7,13 @@ import {
     REGISTER_USER_ERROR,
     REGISTER_USER_SUCCESS,
 } from './UserActionTypes';
+import { loginUserError, loginUserSuccess } from './UserActions';
 import * as Api from '../Api';
 
 export function* registerSaga(payload) {
     try {
         const response = yield call(Api.registerUser, payload);
-        yield [
-            put({ type: REGISTER_USER_SUCCESS, response })
-        ];
+        yield put(loginUserSuccess(response));
     } catch(error) {
         yield put({ type: REGISTER_USER_ERROR, error: error })
     }
@@ -23,11 +22,9 @@ export function* registerSaga(payload) {
 export function* loginSaga(payload) {
     try {
         const response = yield call(Api.loginUser, payload);
-        yield [
-            put({ type: LOGIN_USER_SUCCESS, response })
-        ];
+        yield put(loginUserSuccess(response));
     } catch (error) {
-        yield put({ type: LOGIN_USER_ERROR, error: error });
+        yield put(loginUserError(error));
     }
 }
 

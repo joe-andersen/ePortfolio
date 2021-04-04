@@ -29,3 +29,7 @@ export const checkCookie = () => {
         return null;
     }
 }
+
+export const expireCookie = () => {
+    setCookie('token', '', new Date())
+}

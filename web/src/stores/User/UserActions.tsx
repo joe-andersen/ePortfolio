@@ -1,4 +1,4 @@
-import { REGISTER_USER, LOGIN_USER } from './UserActionTypes';
+import { REGISTER_USER, LOGIN_USER, LOGIN_USER_SUCCESS, LOGIN_USER_ERROR } from './UserActionTypes';
 
 export const registerUserAction = (user) => {
     return {
@@ -9,7 +9,21 @@ export const registerUserAction = (user) => {
 
 export const loginUserAction = (user) => {
     return {
-        type: typeof LOGIN_USER,
+        type: LOGIN_USER,
         user
     }
 };
+
+export const loginUserSuccess = (user) => {
+    return {
+        type: LOGIN_USER_SUCCESS,
+        payload: user,
+    }
+};
+
+export const loginUserError = (user) => {
+    return {
+        type: LOGIN_USER_ERROR,
+        payload: user,
+    }
+}
