@@ -1,0 +1,1 @@
+export const SET_ADD_TRIP_VISIBLE = 'SET_ADD_TRIP_VISIBLE';

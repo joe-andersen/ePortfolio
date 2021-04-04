@@ -28,7 +28,7 @@ export const RegisterForm: FC<Record<string, never>> = () => {
                 </div>
             </div>
             <div className="mb-3">
-                <button type="button" className="btn btn-primary">Sign Up!</button>
+                <button type="button" className="btn btn-info">Sign Up!</button>
             </div>
         </div>
     )

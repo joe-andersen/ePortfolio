@@ -1,2 +1,3 @@
 export { TripListing } from './TripListing';
-export { PrivateTripListing } from './PrivateTripListing';
+export { TripContainer } from './TripContainer';
+export { AddTrip } from './AddTrip';
