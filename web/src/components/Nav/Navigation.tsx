@@ -1,21 +1,25 @@
 import React, { FC } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getUserTokenSelector } from '../../stores/User/UserSelector';
 import { checkCookie, expireCookie } from '../../utils/UseCookie';
 import { useHistory } from 'react-router-dom'
+import { clearToken } from '../../stores/User/UserActions';
 
 export const Navigation: FC<Record<string, never>> = () => {
-    let isAuthenticated = useSelector(getUserTokenSelector) ?? checkCookie();
+    const isAuthenticated = useSelector(getUserTokenSelector) ?? checkCookie();
+    const dispatch = useDispatch();
     const history = useHistory();
 
-    // TODO: fix this as it is not in anyway
-    // correct. You need a action to clear
-    // the state.
     const logOut = (event) => {
         event.preventDefault();
+        dispatch(clearToken());
         expireCookie();
         history.push('/');
-        isAuthenticated = false;
+    }
+
+    const logIn = (event) => {
+        event.preventDefault();
+        history.push('/login');
     }
 
     return (
@@ -31,13 +35,13 @@ export const Navigation: FC<Record<string, never>> = () => {
             </div>
             <div className="navbar-end">
                 {!isAuthenticated ?
-                    <div className="navbar-item">
-                        <span className="has-icon-left">Log In</span>
-                    </div>
+                    <a className="navbar-item">
+                        <span className="has-icon-left" onClick={(event) => logIn(event)}>Log In</span>
+                    </a>
                 :
-                    <div className="navbar-item">
+                    <a className="navbar-item">
                         <span className="has-icon-left" onClick={(event) => logOut(event)}>Log Out</span>
-                    </div>
+                    </a>
                 }
             </div>
         </nav>

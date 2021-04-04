@@ -1,4 +1,4 @@
-import { REGISTER_USER, LOGIN_USER, LOGIN_USER_SUCCESS, LOGIN_USER_ERROR } from './UserActionTypes';
+import { REGISTER_USER, LOGIN_USER, LOGIN_USER_SUCCESS, LOGIN_USER_ERROR, CLEAR_TOKEN } from './UserActionTypes';
 
 export const registerUserAction = (user) => {
     return {
@@ -27,3 +27,9 @@ export const loginUserError = (user) => {
         payload: user,
     }
 }
+
+export const clearToken = () => {
+    return {
+        type: CLEAR_TOKEN,
+    }
+};
