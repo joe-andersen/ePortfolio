@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserTokenSelector } from '../../stores/User/UserSelector';
 import { checkCookie, expireCookie } from '../../utils/UseCookie';
-import { useHistory } from 'react-router-dom'
-import { clearToken } from '../../stores/User/UserActions';
+import { useHistory } from 'react-router-dom';
+import { clearUserData } from '../../stores/User/UserActions';
 
 export const Navigation: FC<Record<string, never>> = () => {
     const isAuthenticated = useSelector(getUserTokenSelector) ?? checkCookie();
@@ -12,13 +12,14 @@ export const Navigation: FC<Record<string, never>> = () => {
 
     const logOut = (event) => {
         event.preventDefault();
-        dispatch(clearToken());
+        dispatch(clearUserData());
         expireCookie();
         history.push('/');
     }
 
     const logIn = (event) => {
         event.preventDefault();
+        dispatch(clearUserData());
         history.push('/login');
     }
 

@@ -1,16 +1,30 @@
-import { REGISTER_USER, LOGIN_USER, LOGIN_USER_SUCCESS, LOGIN_USER_ERROR, CLEAR_TOKEN } from './UserActionTypes';
+import { REGISTER_USER, LOGIN_USER, LOGIN_USER_SUCCESS, LOGIN_USER_ERROR, REGISTER_USER_ERROR, REGISTER_USER_SUCCESS, CLEAR_USER_DATA } from './UserActionTypes';
 
 export const registerUserAction = (user) => {
     return {
-        type: typeof REGISTER_USER,
-        user
+        type: REGISTER_USER,
+        user,
+    }
+};
+
+export const registerUserError = (user) => {
+    return {
+        type: REGISTER_USER_ERROR,
+        payload: user,
+    }
+};
+
+export const registerUserSuccess = (user) => {
+    return {
+        type: REGISTER_USER_SUCCESS,
+        payload: user,
     }
 };
 
 export const loginUserAction = (user) => {
     return {
         type: LOGIN_USER,
-        user
+        user,
     }
 };
 
@@ -28,8 +42,8 @@ export const loginUserError = (user) => {
     }
 }
 
-export const clearToken = () => {
+export const clearUserData = () => {
     return {
-        type: CLEAR_TOKEN,
+        type: CLEAR_USER_DATA,
     }
 };
