@@ -1,28 +1,32 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
 import {
     LOGIN_USER,
-    LOGIN_USER_ERROR,
-    LOGIN_USER_SUCCESS,
     REGISTER_USER,
-    REGISTER_USER_ERROR,
-    REGISTER_USER_SUCCESS,
 } from './UserActionTypes';
-import { loginUserError, loginUserSuccess } from './UserActions';
+import { loginUserError, loginUserSuccess, registerUserError, registerUserSuccess } from './UserActions';
 import * as Api from '../Api';
 
 export function* registerSaga(payload) {
     try {
         const response = yield call(Api.registerUser, payload);
-        yield put(loginUserSuccess(response));
+        if (response?.code !== 200) {
+            yield put(registerUserError(response?.error));
+        } else {
+            yield put(registerUserSuccess(response));
+        }
     } catch(error) {
-        yield put({ type: REGISTER_USER_ERROR, error: error })
+        yield put(registerUserError(error));
     }
 }
 
 export function* loginSaga(payload) {
     try {
         const response = yield call(Api.loginUser, payload);
-        yield put(loginUserSuccess(response));
+        if (response?.code !== 200) {
+            yield put(loginUserError(response?.error));
+        } else {
+            yield put(loginUserSuccess(response));
+        }
     } catch (error) {
         yield put(loginUserError(error));
     }
