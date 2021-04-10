@@ -1,3 +1,7 @@
 export const ADD_TRIP = 'ADD_TRIP';
 export const ADD_TRIP_SUCCESS = 'ADD_TRIP_SUCCESS';
 export const ADD_TRIP_ERROR = 'ADD_TRIP_ERROR';
+
+export const LIST_TRIPS = 'LIST_TRIPS';
+export const LIST_TRIPS_SUCCESS = 'LIST_TRIPS_SUCCESS';
+export const LIST_TRIPS_ERROR = 'LIST_TRIPS_ERROR';

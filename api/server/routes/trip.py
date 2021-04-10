@@ -18,7 +18,6 @@ TRIP = TripController()
 
 @router.get(
     "/",
-    dependencies=[Depends(AuthBearer())],
     response_description="Trips retrieved",
 )
 async def get_trips(db: AsyncIOMotorClient = Depends(get_database)):

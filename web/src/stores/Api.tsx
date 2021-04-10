@@ -62,3 +62,23 @@ export const addTrip = (trip) => {
             console.log(error);
         });
 };
+
+export const listTrips = () => {
+    const params = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+
+    return fetch(`${apiUrl}trip`, params)
+        .then(response => {
+            return response.json();
+        })
+        .then(json => {
+            return json;
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
