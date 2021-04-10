@@ -2,6 +2,7 @@ import { SET_ADD_TRIP_VISIBLE } from 'GeneralActionTypes';
 
 export interface GeneralState {
     isAddTripVisible: boolean;
+    isEditTripVisible: boolean;
 }
 
 export interface SetAddTripVisible {

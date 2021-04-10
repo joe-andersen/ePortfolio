@@ -5,8 +5,8 @@ import { getAllTripsSelector } from '../../stores/Trips/TripSelector';
 import { TripCard } from './TripCard'
 
 export const TripListing: FC<Record<string, never>> = () => {
-    const allTrips = useSelector(getAllTripsSelector);
     const dispatch = useDispatch();
+    const allTrips = useSelector(getAllTripsSelector);
 
     useEffect(() => {
         dispatch(listTrips());

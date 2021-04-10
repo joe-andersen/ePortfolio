@@ -82,3 +82,46 @@ export const listTrips = () => {
             console.log(error);
         });
 }
+
+export const listTrip = (code) => {
+    const params = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getCookie('token')}`,
+        },
+    };
+
+    return fetch(`${apiUrl}trip/${code}`, params)
+        .then(response => {
+            return response.json();
+        })
+        .then(json => {
+            return json;
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};
+
+export const editTrip = (id, trip) => {
+    const params = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getCookie('token')}`,
+        },
+        body: JSON.stringify(trip),
+    };
+
+    return fetch(`${apiUrl}trip/?id=${id}`, params)
+        .then(response => {
+            return response.json();
+        })
+        .then(json => {
+            return json;
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};
