@@ -2,13 +2,23 @@ import {
     ADD_TRIP,
     ADD_TRIP_ERROR,
     ADD_TRIP_SUCCESS,
+    LIST_TRIPS,
+    LIST_TRIPS_ERROR,
+    LIST_TRIPS_SUCCESS,
 } from './TripActionTypes';
 import { TripState, TripActions } from './TripTypes';
 
 export const initialState: TripState = {
-    error: null,
-    fetching: false,
-    data: [],
+    addTrip: {
+        error: null,
+        fetching: false,
+        data: [],
+    },
+    allTrips: {
+        error: null,
+        fetching: false,
+        data: [],
+    }
 }
 
 export const TripReducer = (state = initialState, action: TripActions) => {
@@ -16,19 +26,49 @@ export const TripReducer = (state = initialState, action: TripActions) => {
         case ADD_TRIP:
             return {
                 ...state,
-                fetching: true,
+                addTrip: {
+                    fetching: true,
+                }
             }
         case ADD_TRIP_ERROR:
             return {
                 ...state,
-                error: action.payload.error,
-                fetching: false,
+                addTrip: {
+                    error: action.payload.error,
+                    fetching: false,
+                }
             }
         case ADD_TRIP_SUCCESS:
             return {
                 ...state,
-                data: action.payload.data,
-                fetching: false,
+                addTrip: {
+                    data: action.payload.data,
+                    fetching: false,
+                }
+            }
+        case LIST_TRIPS:
+            return {
+                ...state,
+                allTrips: {
+                    fetching: true,
+                }
+            }
+        case LIST_TRIPS_ERROR:
+            return {
+                ...state,
+                allTrips: {
+                    fetching: false,
+                    error: action.payload.error,
+                }
+            }
+        case LIST_TRIPS_SUCCESS:
+            return {
+                ...state,
+                allTrips: {
+                    fetching: false,
+                    error: null,
+                    data: action.payload.data[0],
+                }
             }
         default:
             return {
