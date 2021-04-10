@@ -59,20 +59,20 @@ async def add_trip(
 
 
 @router.put(
-    "/{code}",
+    "/",
     dependencies=[Depends(AuthBearer())],
     response_description="Update complete",
 )
 async def update_trip(
-    code: str,
+    id: str,
     trip: TripUpdateSchema = Body(...),
     db: AsyncIOMotorClient = Depends(get_database),
 ):
     trip = {key: value for key, value in trip.dict().items() if value is not None}
-    updated_trip = await TRIP.update_trip(code, trip, db)
+    updated_trip = await TRIP.update_trip(id, trip, db)
     if updated_trip:
         return ResponseModel(
-            f"Trip with Code: {code} update was successful",
+            f"Trip with id: {id} update was successful",
             "Trip updated successfully.",
         )
     return ErrorResponseModel("An error occurred", 404, "Unable to update trip data.")

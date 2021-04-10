@@ -5,6 +5,12 @@ import {
     LIST_TRIPS,
     LIST_TRIPS_ERROR,
     LIST_TRIPS_SUCCESS,
+    LIST_TRIP,
+    LIST_TRIP_ERROR,
+    LIST_TRIP_SUCCESS,
+    EDIT_TRIP,
+    EDIT_TRIP_ERROR,
+    EDIT_TRIP_SUCCESS,
 } from './TripActionTypes';
 import { TripState, TripActions } from './TripTypes';
 
@@ -18,7 +24,19 @@ export const initialState: TripState = {
         error: null,
         fetching: false,
         data: [],
-    }
+    },
+    editTrip: {
+        selectedTrip: {
+            error: null,
+            fetching: false,
+            data: null,
+        },
+        saveChanges: {
+            error: null,
+            fetching: false,
+            data: null,
+        },
+    },
 }
 
 export const TripReducer = (state = initialState, action: TripActions) => {
@@ -68,6 +86,72 @@ export const TripReducer = (state = initialState, action: TripActions) => {
                     fetching: false,
                     error: null,
                     data: action.payload.data[0],
+                }
+            }
+        case LIST_TRIP:
+            return {
+                ...state,
+                editTrip: {
+                    selectedTrip: {
+                        fetching: true,
+                        error: null,
+                        data: null,
+                    },
+                }
+            }
+        case LIST_TRIP_ERROR:
+            return {
+                ...state,
+                editTrip: {
+                    selectedTrip: {
+                        fetching: false,
+                        error: action.payload.error,
+                        data: null,
+                    },
+                }
+            }
+        case LIST_TRIP_SUCCESS:
+            return {
+                ...state,
+                editTrip: {
+                    selectedTrip: {
+                        fetching: false,
+                        error: null,
+                        data: action.payload.data[0],
+                    }
+                }
+            }
+        case EDIT_TRIP:
+            return {
+                ...state,
+                editTrip: {
+                    saveChanges: {
+                        fetching: true,
+                        error: null,
+                        data: null,
+                    }
+                }
+            }
+        case EDIT_TRIP_ERROR:
+            return {
+                ...state,
+                editTrip: {
+                    saveChanges: {
+                        fetching: false,
+                        error: action.payload.error,
+                        data: null,
+                    },
+                }
+            }
+        case EDIT_TRIP_SUCCESS:
+            return {
+                ...state,
+                editTrip: {
+                    saveChanges: {
+                        fetching: false,
+                        error: null,
+                        data: action.payload.data[0],
+                    }
                 }
             }
         default:

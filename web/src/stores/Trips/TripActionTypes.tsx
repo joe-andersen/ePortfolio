@@ -5,3 +5,11 @@ export const ADD_TRIP_ERROR = 'ADD_TRIP_ERROR';
 export const LIST_TRIPS = 'LIST_TRIPS';
 export const LIST_TRIPS_SUCCESS = 'LIST_TRIPS_SUCCESS';
 export const LIST_TRIPS_ERROR = 'LIST_TRIPS_ERROR';
+
+export const LIST_TRIP = 'LIST_TRIP';
+export const LIST_TRIP_SUCCESS = 'LIST_TRIP_SUCCESS';
+export const LIST_TRIP_ERROR = 'LIST_TRIP_ERROR';
+
+export const EDIT_TRIP = 'EDIT_TRIP';
+export const EDIT_TRIP_SUCCESS = 'EDIT_TRIP_SUCCESS';
+export const EDIT_TRIP_ERROR = 'EDIT_TRIP_ERROR';

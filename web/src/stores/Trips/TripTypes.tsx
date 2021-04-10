@@ -2,25 +2,43 @@ import {
     ADD_TRIP,
     ADD_TRIP_ERROR,
     ADD_TRIP_SUCCESS,
+    EDIT_TRIP,
+    EDIT_TRIP_ERROR,
+    EDIT_TRIP_SUCCESS,
+    LIST_TRIP,
     LIST_TRIPS,
     LIST_TRIPS_ERROR,
     LIST_TRIPS_SUCCESS,
+    LIST_TRIP_ERROR,
+    LIST_TRIP_SUCCESS,
 } from './TripActionTypes';
 
 export interface TripState {
     addTrip: {
         error: string | null;
         fetching: boolean;
-        data: AddTrip[]
+        data: Trip[]
     },
     allTrips: {
         error: string | null;
         fetching: boolean;
-        data: Trip[]
+        data: TripWithId[]
     },
+    editTrip: {
+        selectedTrip: {
+            error: string | null;
+            fetching: boolean;
+            data: TripWithId | null;
+        },
+        saveChanges: {
+            error: string | null;
+            fetching: boolean;
+            data: Trip | null;
+        },
+    }
 }
 
-export interface AddTrip {
+export interface Trip {
     code: string;
     name: string;
     length: string;
@@ -31,12 +49,16 @@ export interface AddTrip {
     description: string;
 }
 
-export interface Trip extends AddTrip {
+export interface TripWithId extends Trip {
     id: string;
 }
 
-export interface AddTripRequestPayload {
-    trip: AddTrip;
+export interface TripRequestPayload {
+    trip: Trip;
+}
+
+export interface ListTripRequestPayload {
+    code: string;
 }
 
 // TODO: Create Generic Types
@@ -51,12 +73,12 @@ export interface SuccessPayload<T> {
 
 export interface AddTripRequest {
     type: typeof ADD_TRIP;
-    payload: AddTripRequestPayload;
+    payload: TripRequestPayload;
 }
 
 export interface AddTripSuccess {
     type: typeof ADD_TRIP_SUCCESS;
-    payload: SuccessPayload<AddTrip>;
+    payload: SuccessPayload<Trip>;
 }
 
 export interface AddTripError {
@@ -75,7 +97,37 @@ export interface ListTripsError {
 
 export interface ListTripsSuccess {
     type: typeof LIST_TRIPS_SUCCESS;
+    payload: SuccessPayload<TripWithId>;
+}
+
+export interface ListTripRequest {
+    type: typeof LIST_TRIP;
+    payload: ListTripRequestPayload;
+}
+
+export interface ListTripError {
+    type: typeof LIST_TRIP_ERROR;
+    payload: ErrorPayload;
+}
+
+export interface ListTripSuccess {
+    type: typeof LIST_TRIP_SUCCESS;
+    payload: SuccessPayload<TripWithId>;
+}
+
+export interface EditTripRequest {
+    type: typeof EDIT_TRIP;
+    payload: TripRequestPayload;
+}
+
+export interface EditTripSuccess {
+    type: typeof EDIT_TRIP_SUCCESS;
     payload: SuccessPayload<Trip>;
+}
+
+export interface EditTripError {
+    type: typeof EDIT_TRIP_ERROR;
+    payload: ErrorPayload;
 }
 
 export type TripActions =
@@ -84,4 +136,10 @@ export type TripActions =
     | AddTripError
     | ListTripsRequest
     | ListTripsSuccess
-    | ListTripsError;
+    | ListTripsError
+    | ListTripRequest
+    | ListTripSuccess
+    | ListTripError
+    | EditTripRequest
+    | EditTripSuccess
+    | EditTripError;

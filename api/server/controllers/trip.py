@@ -40,15 +40,15 @@ class TripController:
             )
             return self.map(new_trip)
 
-    async def update_trip(self, code: str, data: dict, db: AsyncIOMotorClient) -> bool:
+    async def update_trip(self, id: str, data: dict, db: AsyncIOMotorClient) -> bool:
         # ensure data is not empty
         if len(data) < 1:
             return False
-        trip = await db[self.database_name][self.collection].find_one({"code": code})
+        trip = await db[self.database_name][self.collection].find_one({"_id": ObjectId(id)})
 
         if trip:
             updated_trip = await db[self.database_name][self.collection].update_one(
-                {"code": code}, {"$set": data}
+                {"_id": ObjectId(id)}, {"$set": data}
             )
             if updated_trip:
                 return True

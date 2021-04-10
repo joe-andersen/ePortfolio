@@ -2,8 +2,9 @@ import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux'; 
 import { TripListing } from './TripListing';
 import { AddTrip } from './AddTrip';
-import { getIsAddTripVisibleSelector } from '../../stores/General/GeneralSelector';
+import { getIsAddTripVisibleSelector, getIsEditTripVisibleSelector } from '../../stores/General/GeneralSelector';
 import { setAddTripVisible } from '../../stores/General/GeneralActions';
+import { EditTrip } from './EditTrip';
 
 const style = {
     row: {
@@ -13,6 +14,7 @@ const style = {
 
 export const TripContainer: FC<Record<string, never>> = () => {
     const isAddTripVisible = useSelector(getIsAddTripVisibleSelector);
+    const isEditTripVisible = useSelector(getIsEditTripVisibleSelector);
     const dispatch = useDispatch();
 
     const onAddTripClick = () => {
@@ -23,6 +25,8 @@ export const TripContainer: FC<Record<string, never>> = () => {
         <div className="container-fluid">
             {isAddTripVisible ?
                 <AddTrip />
+            : isEditTripVisible ?
+                <EditTrip />
             :
                 <>
                     <div className="row" style={style.row}>
