@@ -1,4 +1,4 @@
-import { SET_ADD_TRIP_VISIBLE, SET_EDIT_TRIP_VISIBLE } from './GeneralActionTypes';
+import { CLEAR_VISIBILITY, SET_ADD_TRIP_VISIBLE, SET_EDIT_TRIP_VISIBLE } from './GeneralActionTypes';
 import { GeneralState, GeneralActions } from './GeneralTypes';
 
 export const initialState: GeneralState = {
@@ -17,6 +17,12 @@ export const GeneralReducer = (state = initialState, action: GeneralActions) => 
             return {
                 ...state,
                 isEditTripVisible: !state.isEditTripVisible,
+            }
+        case CLEAR_VISIBILITY:
+            return {
+                ...state,
+                isAddTripVisible: false,
+                isEditTripVisible: false,
             }
         default:
             return {

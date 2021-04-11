@@ -1,8 +1,10 @@
 import React, { FC } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { TripWithId } from '../../stores/Trips/TripTypes';
 import { setEditTripVisible } from '../../stores/General/GeneralActions';
 import { listTrip } from '../../stores/Trips/TripActions';
+import { getUserTokenSelector } from '../../stores/User/UserSelector';
+import { checkCookie } from '../../utils/UseCookie';
 
 const style = {
     buttonMargin: {
@@ -20,6 +22,7 @@ export interface TripCardProps {
 
 export const TripCard = ({ trip }: TripCardProps) => {
     const dispatch = useDispatch();
+    const isAuthenticated = useSelector(getUserTokenSelector) ?? checkCookie();
 
     const onEditTripClick = (code) => {
         dispatch(listTrip(code));
@@ -40,14 +43,18 @@ export const TripCard = ({ trip }: TripCardProps) => {
                 <p className="card-text" dangerouslySetInnerHTML={{ __html: trip.description }}></p>
             </div>
             <div>
-                <button
-                    type="button"
-                    className="btn btn-info"
-                    style={style.buttonMargin}
-                    onClick={() => onEditTripClick(trip.code)}
-                >
-                    Edit
-                </button>
+                {
+                    isAuthenticated ?
+                        <button
+                            type="button"
+                            className="btn btn-info"
+                            style={style.buttonMargin}
+                            onClick={() => onEditTripClick(trip.code)}
+                        >
+                            Edit
+                        </button>
+                    : null
+                }
             </div>
         </div>
     )
