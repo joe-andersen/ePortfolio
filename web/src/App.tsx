@@ -3,6 +3,7 @@ import { LoginForm, RegisterForm } from './components/User';
 import { Navigation } from './components/Nav';
 import { TripContainer } from './components/Trips';
 import { PrivateRoute } from './components/Utilities/PrivateRoute';
+import { HomeOpen, HomePrivate } from './components/Home';
 import {
     BrowserRouter,
     Route,
@@ -15,10 +16,11 @@ const App: FC = () => {
             <Navigation />       
             <div>
                 <Switch>
-                    <Route path='/' exact={true} component={LoginForm} />
+                    <Route path='/' exact={true} component={HomeOpen} />
                     <Route path='/login' component={LoginForm} />
                     <Route path='/register' component={RegisterForm} />
-                    <PrivateRoute path='/trips' component={TripContainer} />
+                    <Route path='/trips' component={TripContainer} />
+                    <PrivateRoute path='/home' component={HomePrivate} />
                 </Switch>
             </div>
         </BrowserRouter>

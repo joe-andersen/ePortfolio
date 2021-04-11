@@ -1,4 +1,4 @@
-import  { SET_ADD_TRIP_VISIBLE, SET_EDIT_TRIP_VISIBLE } from './GeneralActionTypes';
+import  { CLEAR_VISIBILITY, SET_ADD_TRIP_VISIBLE, SET_EDIT_TRIP_VISIBLE } from './GeneralActionTypes';
 
 export const setAddTripVisible = () => {
     return {
@@ -9,5 +9,11 @@ export const setAddTripVisible = () => {
 export const setEditTripVisible = () => {
     return {
         type: SET_EDIT_TRIP_VISIBLE,
+    }
+};
+
+export const clearVisibility = () => {
+    return {
+        type: CLEAR_VISIBILITY,
     }
 };

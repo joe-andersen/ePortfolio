@@ -5,6 +5,8 @@ import { AddTrip } from './AddTrip';
 import { getIsAddTripVisibleSelector, getIsEditTripVisibleSelector } from '../../stores/General/GeneralSelector';
 import { setAddTripVisible } from '../../stores/General/GeneralActions';
 import { EditTrip } from './EditTrip';
+import { getUserTokenSelector } from '../../stores/User/UserSelector';
+import { checkCookie } from '../../utils/UseCookie';
 
 const style = {
     row: {
@@ -15,6 +17,7 @@ const style = {
 export const TripContainer: FC<Record<string, never>> = () => {
     const isAddTripVisible = useSelector(getIsAddTripVisibleSelector);
     const isEditTripVisible = useSelector(getIsEditTripVisibleSelector);
+    const isAuthenticated = useSelector(getUserTokenSelector) ?? checkCookie();
     const dispatch = useDispatch();
 
     const onAddTripClick = () => {
@@ -29,9 +32,13 @@ export const TripContainer: FC<Record<string, never>> = () => {
                 <EditTrip />
             :
                 <>
-                    <div className="row" style={style.row}>
-                        <button type="button" className="btn btn-info" onClick={onAddTripClick}>Add Trip</button>
-                    </div>
+                    {
+                        isAuthenticated ?
+                            <div className="row" style={style.row}>
+                                <button type="button" className="btn btn-info" onClick={onAddTripClick}>Add Trip</button>
+                            </div>
+                        : null
+                    }
                     <TripListing />
                 </>
             }

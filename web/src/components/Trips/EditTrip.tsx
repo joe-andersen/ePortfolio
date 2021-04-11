@@ -41,7 +41,7 @@ export const EditTrip: FC<Record<string, never>> = () => {
         dispatch(editTrip(id, trip));
         dispatch(setEditTripVisible());
 
-        history.push('/');
+        history.push('/trips');
     }
 
     return (

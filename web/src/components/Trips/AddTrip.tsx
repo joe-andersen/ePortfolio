@@ -36,7 +36,8 @@ export const AddTrip: FC<Record<string, never>> = () => {
         }
 
         dispatch(addTrip(trip));
-        history.push('/');
+        dispatch(setAddTripVisible());
+        history.push('/trips');
     }
     return (
         <>
