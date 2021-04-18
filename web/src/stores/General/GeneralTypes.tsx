@@ -1,4 +1,4 @@
-import { SET_ADD_TRIP_VISIBLE, SET_EDIT_TRIP_VISIBLE, CLEAR_VISIBILITY } from 'GeneralActionTypes';
+import { SET_ADD_TRIP_VISIBLE, SET_EDIT_TRIP_VISIBLE, CLEAR_VISIBILITY } from './GeneralActionTypes';
 
 export interface GeneralState {
     isAddTripVisible: boolean;
