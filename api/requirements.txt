@@ -2,7 +2,7 @@ fastapi==0.63.0
 uvicorn==0.13.4
 motor==2.3.1
 pydantic[email]
-PyJWT==2.0.1
+pyjwt>=2.4.0
 cryptography==3.4.6
 python-dotenv==0.15.0
 black==20.8b1
